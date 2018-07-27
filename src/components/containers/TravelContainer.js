@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../Navbar'
 import ContentContainer from './ContentContainer'
 import ArticleDetail from '../ArticleDetail'
+import articles from "../../data"
 
 export default class TravelContainer extends Component {
   render() {
@@ -9,7 +10,7 @@ export default class TravelContainer extends Component {
       <div className="travel-container">
         TravelContainer content
         <Navbar />
-        <ContentContainer />
+        <ContentContainer articles={articles} />
         <ArticleDetail />
       </div>
     )

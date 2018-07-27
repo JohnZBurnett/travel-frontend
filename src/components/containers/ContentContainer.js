@@ -4,11 +4,12 @@ import ArticleListContainer from './ArticleListContainer'
 
 export default class ContentContainer extends Component {
   render() {
+    // console.log("props in conent container", this.props)
     return (
       <div className="ContentContainer">
         ContentContainer Content 
         <FilterBar />
-        <ArticleListContainer />
+        <ArticleListContainer articles={this.props.articles}/>
       </div>
     )
   }
