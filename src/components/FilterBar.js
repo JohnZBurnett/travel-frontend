@@ -3,7 +3,7 @@ import React from 'react'
 const FilterBar = () => {
   return (
     <div className="filter-bar">
-      FilterBar Content
+      <input placeholder="Search here"></input>
     </div>
   )
 }

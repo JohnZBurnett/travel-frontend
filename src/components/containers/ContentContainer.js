@@ -3,13 +3,22 @@ import FilterBar from '../FilterBar'
 import ArticleListContainer from './ArticleListContainer'
 
 export default class ContentContainer extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {  key: "value",  }
+  }
+
+
   render() {
-    // console.log("props in conent container", this.props)
+    console.log("state in conent container", this.state)
     return (
-      <div className="ContentContainer">
-        ContentContainer Content 
+      <div className="content-container">
         <FilterBar />
-        <ArticleListContainer articles={this.props.articles}/>
+        <ArticleListContainer 
+          articles={this.props.articles}
+          handleCardClick={this.props.handleCardClick}
+        />
       </div>
     )
   }

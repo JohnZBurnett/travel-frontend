@@ -1,5 +1,6 @@
 let articles = [
-    {
+    {   
+        id: 1,
         title: "title1",
         body_text: "text1",
         thumbnail_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgw-ie1q1jg-qV2k4S570IcKqliKc1ASXN-YZGbxBTX15JtuUT",
@@ -7,7 +8,8 @@ let articles = [
         publish_time: "time1",
     },
 
-    {
+    {   
+        id: 2,
         title: "title2",
         body_text: "text2",
         thumbnail_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgw-ie1q1jg-qV2k4S570IcKqliKc1ASXN-YZGbxBTX15JtuUT",
@@ -15,7 +17,8 @@ let articles = [
         publish_time: "time2",
     },
 
-    {
+    {   
+        id: 3,
         title: "title3",
         body_text: "text3",
         thumbnail_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgw-ie1q1jg-qV2k4S570IcKqliKc1ASXN-YZGbxBTX15JtuUT",
@@ -23,7 +26,8 @@ let articles = [
         publish_time: "time3",
     },
 
-    {
+    {   
+        id: 4,
         title: "title4",
         body_text: "text4",
         thumbnail_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgw-ie1q1jg-qV2k4S570IcKqliKc1ASXN-YZGbxBTX15JtuUT",
@@ -32,6 +36,7 @@ let articles = [
     },
 
     {
+        id: 5,
         title: "title5",
         body_text: "text5",
         thumbnail_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgw-ie1q1jg-qV2k4S570IcKqliKc1ASXN-YZGbxBTX15JtuUT",

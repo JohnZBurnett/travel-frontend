@@ -1,6 +1,11 @@
+* {
+  /* font-family: 'Hanalei Fill', cursive; */
+}
+
 .App {
   text-align: center;
 }
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -41,4 +46,22 @@
   border: .75px;
   border-style: solid;
   border-color: orange;
+}
+
+
+.filter-bar {
+  display: inline-block;
+  border: .75px;
+  border-style: solid;
+  border-color: magenta;
+  width: 50%;
+}
+
+.content-container {
+  display: inline-block;
+  border: .75px;
+  border-style: solid;
+  border-color: yellowgreen;
+  margin: 05%;
+  padding: 05%;
 }
