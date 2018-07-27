@@ -8,9 +8,9 @@ export default class TravelContainer extends Component {
     return (
       <div className="travel-container">
         TravelContainer content
-        <NavBar />
+        <Navbar />
         <ContentContainer />
-        <ArticleDetailContainer />
+        <ArticleDetail />
       </div>
     )
   }
