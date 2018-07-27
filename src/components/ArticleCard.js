@@ -4,7 +4,8 @@ const ArticleCard = (props) => {
   console.log("article card props", props)
   return (
     <div className="article-card">
-      ArticleCard Content 
+      <img src={props.thumbnail_url} alt="thumbnail here"></img>
+      <h1>{props.title}</h1>
     </div>
   )
 }
