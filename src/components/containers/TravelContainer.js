@@ -5,12 +5,22 @@ import ArticleDetail from '../ArticleDetail'
 import articles from "../../data"
 
 export default class TravelContainer extends Component {
+  constructor(props) {
+    super(props);
 
-  handleCardClick = (event) => {
-    console.log("Card was clicked!!!", event);
+    this.state = {
+      onDetailPage: false,
+    }
+  }
+
+  handleCardClick = (event, id) => {
+    this.setState({
+      onDetailPage: !this.state.onDetailPage,
+    })
   } 
 
   render() {
+    console.log("current state in travel container: ", this.state)
     return (
       <div className="travel-container">
         TravelContainer content
