@@ -1,9 +1,11 @@
 import React from 'react'
 
-const ArticleDetail = () => {
+const ArticleDetail = (props) => {
   return (
     <div className="article-detail">
-      ArticleDetailContent
+      {props.article.picture_url}
+      {props.article.title}
+      {props.article.body_text}
     </div>
   )
 }

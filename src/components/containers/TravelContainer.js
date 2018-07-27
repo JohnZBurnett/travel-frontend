@@ -17,7 +17,24 @@ export default class TravelContainer extends Component {
     this.setState({
       onDetailPage: !this.state.onDetailPage,
     })
-  } 
+  }
+
+  toggleDetailPage = () => {
+    if (this.state.onDetailPage){
+      
+        return ( <ArticleDetail 
+            article={articles[0]} 
+          />)
+
+    } 
+
+      return (<ContentContainer 
+              articles={articles} 
+              handleCardClick={this.handleCardClick} 
+            />  )
+      
+
+  }
 
   render() {
     console.log("current state in travel container: ", this.state)
@@ -25,11 +42,7 @@ export default class TravelContainer extends Component {
       <div className="travel-container">
         TravelContainer content
         <Navbar />
-        <ContentContainer 
-          articles={articles} 
-          handleCardClick={this.handleCardClick} 
-        />
-        <ArticleDetail />
+        {this.toggleDetailPage()}
       </div>
     )
   }
