@@ -6,18 +6,24 @@ export default class ContentContainer extends Component {
   constructor(props){
     super(props);
 
-    this.state = {  key: "value",  }
+    this.state = {  currentQuery: "",  }
   }
 
+  onQueryUpdate = (event) => {
+    this.setState({ currentQuery: event.target.value })
+  }
 
   render() {
-    console.log("state in conent container", this.state)
     return (
       <div className="content-container">
-        <FilterBar />
-        <ArticleListContainer 
+        <FilterBar
+          currentQuery={this.state.currentQuery}
+          onFilterChange={this.onQueryUpdate}
+          />
+        <ArticleListContainer
           articles={this.props.articles}
           handleCardClick={this.props.handleCardClick}
+          currentQuery={this.state.currentQuery}
         />
       </div>
     )
