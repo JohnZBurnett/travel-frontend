@@ -19,7 +19,7 @@ export default class ContentContainer extends Component {
         <FilterBar
           currentQuery={this.state.currentQuery}
           onFilterChange={this.onQueryUpdate}
-          />
+        />
         <ArticleListContainer
           articles={this.props.articles}
           handleCardClick={this.props.handleCardClick}
