@@ -5,7 +5,6 @@ export default class ArticleListContainer extends Component {
 
   generateArticleCards = () => {
     return this.props.articles.map(individualCard => {
-      // console.log("individualCard", individualCard.title)
       if (individualCard.title.toLowerCase().includes(this.props.currentQuery.toLowerCase())){
         return (
           <ArticleCard
@@ -20,7 +19,6 @@ export default class ArticleListContainer extends Component {
   }
 
   render() {
-    // console.log("props in article list container", this.props)
     return (
       <div className="article-list-container">
         {this.generateArticleCards()}
@@ -28,6 +26,3 @@ export default class ArticleListContainer extends Component {
     )
   }
 }
-
-
-//currentQuery={this.state.currentQuery}
