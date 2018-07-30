@@ -49,7 +49,9 @@ export default class TravelContainer extends Component {
 
   handleSaveClick = (event) => {
     console.log("handle save click", event.target)
-
+    let clonedSavedArticles = [...this.state.userSavedArticles];
+    clonedSavedArticles.push(this.state.currentArticle);
+    this.setState({ userSavedArticles: clonedSavedArticles })
   }
 
   toggleDetailPage = () => {
@@ -77,6 +79,8 @@ export default class TravelContainer extends Component {
 
   render() {
     // console.log("current state in travel container: ", this.state)
+    // console.log("saved articles after push", this.state.userSavedArticles)
+
     return (
       <div className="travel-container">
         TravelContainer content
