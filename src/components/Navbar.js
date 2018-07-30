@@ -9,8 +9,8 @@ const Navbar = (props) => {
     } else {
       return(
         <Fragment>
-          <button className="navbar-button">User Page</button>
-          <button className="navbar-button" id="logout-button">Logout</button>
+          <button className="navbar-button" onClick={props.handleUserShowClick}>User Page</button>
+          <button className="navbar-button" id="logout-button" onClick={props.handleUserShowClick}>Logout</button>
         </Fragment>
       )
     }

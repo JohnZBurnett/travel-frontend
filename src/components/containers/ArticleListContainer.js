@@ -10,6 +10,7 @@ export default class ArticleListContainer extends Component {
           <ArticleCard
             key={individualCard.id}
             id={individualCard.id}
+            article={individualCard}
             title={individualCard.title}
             thumbnail_url={individualCard.thumbnail_url}
             handleCardClick={this.props.handleCardClick}

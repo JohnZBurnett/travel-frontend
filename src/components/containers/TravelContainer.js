@@ -3,6 +3,7 @@ import Navbar from '../Navbar'
 import ContentContainer from './ContentContainer'
 import ArticleDetail from '../ArticleDetail'
 import articles from "../../data"
+import userSavedArticles from '../../user_data'
 
 export default class TravelContainer extends Component {
   constructor(props) {
@@ -10,10 +11,28 @@ export default class TravelContainer extends Component {
 
     this.state = {
       onDetailPage: false,
+      onUserShowPage: false,
+      userSavedArticles: [],
+      userLoggedIn: true,
+      currentArticle: {},
+      articles: articles,
+
     }
   }
 
-  handleCardClick = (event, id) => {
+
+  handleUserShowClick = (event) => {
+    this.setState({
+      onUserShowPage: true 
+    })
+    console.log("On User Show Page: ", this.state.onUserShowPage); 
+  }
+
+  handleCardClick = (event, article) => {
+    this.setState({
+      currentArticle: article
+    })
+  
     this.setState({
       onDetailPage: !this.state.onDetailPage,
     })
@@ -28,19 +47,30 @@ export default class TravelContainer extends Component {
     }
   }
 
+  handleSaveClick = (event) => {
+    console.log("handle save click", event.target)
+
+  }
+
   toggleDetailPage = () => {
     if (this.state.onDetailPage){
 
         return ( <ArticleDetail
             article={articles[0]}
+            loggedIn={this.state.userLoggedIn}
+            onArticleSave={this.handleSaveClick}
           />)
 
     }
+    if (this.state.onUserShowPage) {
 
-      return (<ContentContainer
-              articles={articles}
-              handleCardClick={this.handleCardClick}
-            />  )
+    } else {
+        return (<ContentContainer
+          articles={articles}
+          handleCardClick={this.handleCardClick}
+        />  )
+    }
+      
 
 
   }
@@ -50,7 +80,7 @@ export default class TravelContainer extends Component {
     return (
       <div className="travel-container">
         TravelContainer content
-        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={true}/>
+        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} handleUserShowClick={this.handleUserShowClick}/>
         {this.toggleDetailPage()}
       </div>
     )
