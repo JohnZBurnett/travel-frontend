@@ -14,7 +14,7 @@ export default class TravelContainer extends Component {
       onDetailPage: false,
       onUserShowPage: false,
       userSavedArticles: [],
-      userLoggedIn: true,
+      userLoggedIn: false,
       currentArticle: {},
       articles: articles,
       user: {
@@ -26,19 +26,38 @@ export default class TravelContainer extends Component {
   }
 
   onFormChange = (event) => {
-    console.log("We're in the onFormChange CB!", event.target)
+    console.log("We're in the onFormChange CB!", this.state.user)
+    let formKey = event.target.id
+    if (formKey === 'username'){
+      this.setState({
+        user: {
+          username: event.target.value,
+          password: this.state.user.password
+        }
+      })
+    } else if (formKey === 'password') {
+      this.setState({
+        user: {
+          username: this.state.user.username,
+          password: event.target.value
+        }
+      })
+    }
   }
-
-  registerSubmit = () => {
-
+/* fetch to db using state */
+  registerSubmit = (event) => {
+    debugger
+    event.preventDefault()
+    console.log("reg submit", event.target)
   }
 
   postUserToDatabase = () => {
 
   }
 
-  loginSubmit = () => {
-
+  loginSubmit = (event) => {
+    event.preventDefault()
+    console.log("login submit", event.target)
   }
 
 
@@ -119,10 +138,11 @@ export default class TravelContainer extends Component {
   }
 
   renderLoginPage = () => {
-    return <LoginForm />
+    return <LoginForm registerSubmit={this.registerSubmit} onFormChange={this.onFormChange} username={this.state.user.username} password={this.state.user.password}/>
   }
 
   handleDisplayingContent = () => {
+    console.log("inHandle", this.state)
     if (this.state.userLoggedIn === false) {
       return this.renderLoginPage(); 
     } else {
@@ -133,7 +153,6 @@ export default class TravelContainer extends Component {
   render() {
     // console.log("current state in travel container: ", this.state)
     // console.log("saved articles after push", this.state.userSavedArticles)
-
     return (
       <div className="travel-container">
         TravelContainer content
