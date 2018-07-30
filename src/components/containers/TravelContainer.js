@@ -63,6 +63,14 @@ export default class TravelContainer extends Component {
     this.setState({ userSavedArticles: clonedSavedArticles })
   }
 
+  handleUnsaveClick = (event) => {
+    console.log("Unsave Click Event: ", event); 
+    let currentIndex = this.state.userSavedArticles.indexOf(this.state.currentArticle); 
+    let userSavedArticlesClone = [...this.state.userSavedArticles]; 
+    userSavedArticlesClone.splice(currentIndex, 1); 
+    console.log("Post-Splice Saved Articles: ", userSavedArticlesClone); 
+  }
+
   toggleDetailPage = () => {
     if (this.state.onDetailPage){
 
@@ -70,6 +78,8 @@ export default class TravelContainer extends Component {
             article={this.state.currentArticle}
             loggedIn={this.state.userLoggedIn}
             onArticleSave={this.handleSaveClick}
+            userSavedArticles={this.state.userSavedArticles}
+            onArticleUnsave={this.handleUnsaveClick}
           />)
 
     }

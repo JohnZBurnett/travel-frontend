@@ -5,6 +5,9 @@ const ArticleDetail = (props) => {
   function renderIfLoggedIn() {
     console.log("article detail props", props)
     if (props.loggedIn) {
+      if (props.userSavedArticles.includes(props.article)) {
+        return <button onClick={props.onArticleUnsave}>Unsave Article</button>
+      }
       return <button onClick={props.onArticleSave}>Save Article</button>
     }
   }
