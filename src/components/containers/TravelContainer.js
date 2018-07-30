@@ -50,7 +50,7 @@ export default class TravelContainer extends Component {
     return (
       <div className="travel-container">
         TravelContainer content
-        <Navbar />
+        <Navbar onNavbarClick={this.onNavbarClick}/>
         {this.toggleDetailPage()}
       </div>
     )
