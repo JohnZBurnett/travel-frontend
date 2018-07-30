@@ -4,6 +4,7 @@ import ContentContainer from './ContentContainer'
 import ArticleDetail from '../ArticleDetail'
 import articles from "../../data"
 import userSavedArticles from '../../user_data'
+import LoginForm from '../Forms'
 
 export default class TravelContainer extends Component {
   constructor(props) {
@@ -16,9 +17,30 @@ export default class TravelContainer extends Component {
       userLoggedIn: true,
       currentArticle: {},
       articles: articles,
+      user: {
+        username: "",
+        password: ""
+      }
 
     }
   }
+
+  onFormChange = (event) => {
+    console.log("We're in the onFormChange CB!", event.target)
+  }
+
+  registerSubmit = () => {
+
+  }
+
+  postUserToDatabase = () => {
+
+  }
+
+  loginSubmit = () => {
+
+  }
+
 
 
   handleUserShowClick = (event) => {
@@ -94,9 +116,18 @@ export default class TravelContainer extends Component {
           handleCardClick={this.handleCardClick}
         />  )
     }
-      
+  }
 
+  renderLoginPage = () => {
+    return <LoginForm />
+  }
 
+  handleDisplayingContent = () => {
+    if (this.state.userLoggedIn === false) {
+      return this.renderLoginPage(); 
+    } else {
+      return this.toggleDetailPage(); 
+    }
   }
 
   render() {
@@ -107,7 +138,7 @@ export default class TravelContainer extends Component {
       <div className="travel-container">
         TravelContainer content
         <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} handleUserShowClick={this.handleUserShowClick}/>
-        {this.toggleDetailPage()}
+        {this.handleDisplayingContent()}
       </div>
     )
   }
