@@ -38,12 +38,21 @@ export default class TravelContainer extends Component {
     })
   }
 
-  onNavbarClick = (event) => {
-    console.log("We're on the click!")
-    if (event.target.id === "articles-button") {
-      this.setState({
-        onDetailPage: false
-      })
+  onNavbarClick = (event, buttonClicked) => {
+
+    switch (buttonClicked) {
+      case "articles": 
+        this.setState({
+          onDetailPage: false,
+          onUserShowPage: false,
+        });
+        break;
+      case "userPage": 
+        this.setState({
+          onDetailPage: false,
+          onUserShowPage: true, 
+        })
+        break; 
     }
   }
 
@@ -58,17 +67,20 @@ export default class TravelContainer extends Component {
     if (this.state.onDetailPage){
 
         return ( <ArticleDetail
-            article={articles[0]}
+            article={this.state.currentArticle}
             loggedIn={this.state.userLoggedIn}
             onArticleSave={this.handleSaveClick}
           />)
 
     }
     if (this.state.onUserShowPage) {
-
+      return (<ContentContainer
+        articles={this.state.userSavedArticles}
+        handleCardClick={this.handleCardClick}
+      />  )
     } else {
         return (<ContentContainer
-          articles={articles}
+          articles={this.state.articles}
           handleCardClick={this.handleCardClick}
         />  )
     }

@@ -9,7 +9,7 @@ const Navbar = (props) => {
     } else {
       return(
         <Fragment>
-          <button className="navbar-button" onClick={props.handleUserShowClick}>User Page</button>
+          <button className="navbar-button" id="user-page-button" onClick={(event) => props.handleUserShowClick(event, "userPage")}>User Page</button>
           <button className="navbar-button" id="logout-button" onClick={props.handleUserShowClick}>Logout</button>
         </Fragment>
       )
@@ -18,7 +18,7 @@ const Navbar = (props) => {
 
   return (
     <div className="navbar">
-      <button onClick={props.onNavbarClick} className="navbar-button" id="articles-button">Articles</button>
+      <button onClick={(event) => props.onNavbarClick(event, "articles")} className="navbar-button" id="articles-button">Articles</button>
       {displayUserActionsPanel()}
     </div>
   )
