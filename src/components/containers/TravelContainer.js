@@ -19,6 +19,15 @@ export default class TravelContainer extends Component {
     })
   }
 
+  onNavbarClick = (event) => {
+    console.log("We're on the click!")
+    if (event.target.id === "articles-button") {
+      this.setState({
+        onDetailPage: false
+      })
+    }
+  }
+
   toggleDetailPage = () => {
     if (this.state.onDetailPage){
 
