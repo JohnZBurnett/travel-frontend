@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Navbar from '../Navbar'
 import ContentContainer from './ContentContainer'
 import ArticleDetail from '../ArticleDetail'
-import articles from "../../data"
+/* import articles from "../../data" */
 import userSavedArticles from '../../user_data'
 import LoginForm from '../Forms'
 
@@ -11,12 +11,13 @@ export default class TravelContainer extends Component {
     super(props);
 
     this.state = {
+      usersArray: [],
       onDetailPage: false,
       onUserShowPage: false,
       userSavedArticles: [],
       userLoggedIn: false,
       currentArticle: {},
-      articles: articles,
+      articles: [],
       user: {
         username: "",
         password: ""
@@ -25,8 +26,35 @@ export default class TravelContainer extends Component {
     }
   }
 
+  callToDb = () => {
+    fetch(`http://localhost:3000/api/v1/articles`).then( r => r.json()).then( data => this.setState({
+      articles: data
+    }))
+  }
+    postUserToDb = () => {
+      fetch(`http://localhost:3000/api/v1/users`, {
+        method: "POST",
+        headers: {
+          'Accept': 'application/json',
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          username: this.state.user.username,
+          password: this.state.user.password
+        })
+      })
+    }
+    setupUsersArray = () => {
+      fetch(`http://localhost:3000/api/v1/users`).then(r => r.json()).then(data => this.setState({
+        usersArray: data
+      }))
+    }
+
+  componentDidMount(){
+    this.callToDb();
+  }
+
   onFormChange = (event) => {
-    console.log("We're in the onFormChange CB!", this.state.user)
     let formKey = event.target.id
     if (formKey === 'username'){
       this.setState({
@@ -44,15 +72,26 @@ export default class TravelContainer extends Component {
       })
     }
   }
-/* fetch to db using state */
-  registerSubmit = (event) => {
-    debugger
-    event.preventDefault()
-    console.log("reg submit", event.target)
+
+
+  setupState = () => {
+    let currentUser = this.state.usersArray.find( user => { user.username === this.state.user.username})
+    console.log(this.state.usersArray)
   }
 
-  postUserToDatabase = () => {
+  
 
+/* fetch to db using state */
+  registerSubmit = (event) => {
+    event.preventDefault()
+    this.postUserToDb()
+ 
+    this.setupState()
+    this.setState({
+      userLoggedIn: !this.state.userLoggedIn,
+
+    })
+    
   }
 
   loginSubmit = (event) => {
@@ -151,8 +190,6 @@ export default class TravelContainer extends Component {
   }
 
   render() {
-    // console.log("current state in travel container: ", this.state)
-    // console.log("saved articles after push", this.state.userSavedArticles)
     return (
       <div className="travel-container">
         TravelContainer content
