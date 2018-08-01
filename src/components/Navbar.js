@@ -5,7 +5,7 @@ const Navbar = (props) => {
 
   function displayUserActionsPanel() {
     if (props.userLoggedIn === false) {
-      return(<button className="navbar-button" id="login-button">Login</button>)
+      return null;
     } else {
       return(
         <Fragment>

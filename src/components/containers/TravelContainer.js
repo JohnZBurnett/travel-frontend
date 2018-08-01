@@ -46,13 +46,13 @@ export default class TravelContainer extends Component {
         })
       }).then( resp => resp.json() ).then( userJSON => {
         this.addUserIdToState(userJSON);
-        this.setUserSavedArticles(userJSON); 
-        return this.setupUsersArray(); 
+        this.setUserSavedArticles(userJSON);
+        return this.setupUsersArray();
       })
     }
 
     setUserSavedArticles = (userJSON) => {
-      console.log("setUserSavedArticles JSON: ", userJSON); 
+      console.log("setUserSavedArticles JSON: ", userJSON);
       this.setState({
         userSavedArticles: userJSON.articles,
       })
@@ -99,19 +99,19 @@ export default class TravelContainer extends Component {
     console.log(this.state.usersArray)
   }
 
-  
+
 
 /* fetch to db using state */
   registerSubmit = (event) => {
     event.preventDefault()
     this.postUserToDb()
- 
+
     this.setupState()
     this.setState({
       userLoggedIn: !this.state.userLoggedIn,
 
     })
-    
+
   }
 
   loginSubmit = (event) => {
@@ -123,16 +123,16 @@ export default class TravelContainer extends Component {
 
   handleUserShowClick = (event) => {
     this.setState({
-      onUserShowPage: true 
+      onUserShowPage: true
     })
-    console.log("On User Show Page: ", this.state.onUserShowPage); 
+    console.log("On User Show Page: ", this.state.onUserShowPage);
   }
 
   handleCardClick = (event, article) => {
     this.setState({
       currentArticle: article
     })
-  
+
     this.setState({
       onDetailPage: !this.state.onDetailPage,
     })
@@ -141,18 +141,18 @@ export default class TravelContainer extends Component {
   onNavbarClick = (event, buttonClicked) => {
 
     switch (buttonClicked) {
-      case "articles": 
+      case "articles":
         this.setState({
           onDetailPage: false,
           onUserShowPage: false,
         });
         break;
-      case "userPage": 
+      case "userPage":
         this.setState({
           onDetailPage: false,
-          onUserShowPage: true, 
+          onUserShowPage: true,
         })
-        break; 
+        break;
     }
   }
 
@@ -160,28 +160,28 @@ export default class TravelContainer extends Component {
     console.log("handle save click", event.target)
     let clonedSavedArticles = [...this.state.userSavedArticles];
     clonedSavedArticles.push(this.state.currentArticle);
-    this.putUserWithSavedArticle(); 
+    this.putUserWithSavedArticle();
     this.setState({ userSavedArticles: clonedSavedArticles })
-    
+
   }
 
   handleUnsaveClick = (event) => {
-    console.log("Unsave Click Event: ", event); 
-    let currentIndex = this.state.userSavedArticles.indexOf(this.state.currentArticle); 
-    let userSavedArticlesClone = [...this.state.userSavedArticles]; 
-    userSavedArticlesClone.splice(currentIndex, 1); 
-    console.log("Post-Splice Saved Articles: ", userSavedArticlesClone); 
+    console.log("Unsave Click Event: ", event);
+    let currentIndex = this.state.userSavedArticles.indexOf(this.state.currentArticle);
+    let userSavedArticlesClone = [...this.state.userSavedArticles];
+    userSavedArticlesClone.splice(currentIndex, 1);
+    console.log("Post-Splice Saved Articles: ", userSavedArticlesClone);
   }
 
   putUserWithSavedArticle = () => {
-    let userToPatch = this.state.usersArray.find( user => user.id === this.state.currentUserId); 
-    userToPatch.articles.push(this.state.currentArticle); 
+    let userToPatch = this.state.usersArray.find( user => user.id === this.state.currentUserId);
+    userToPatch.articles.push(this.state.currentArticle);
     let configObj = {
       method: "PUT",
       headers: {
         "Content-Type":"application/JSON"
       },
-      body: JSON.stringify(userToPatch), 
+      body: JSON.stringify(userToPatch),
     }
 
     fetch(`http://localhost:3000/api/v1/users/${this.state.currentUserId}`, configObj).then(r => console.log("UPDATE RESPONSE ", r))
@@ -219,9 +219,9 @@ export default class TravelContainer extends Component {
   handleDisplayingContent = () => {
     console.log("inHandle", this.state)
     if (this.state.userLoggedIn === false) {
-      return this.renderLoginPage(); 
+      return this.renderLoginPage();
     } else {
-      return this.toggleDetailPage(); 
+      return this.toggleDetailPage();
     }
   }
 
@@ -229,11 +229,19 @@ export default class TravelContainer extends Component {
     window.location.reload(true);
   }
 
+  renderNavBar = () => {
+    if (this.state.userLoggedIn) {
+      return (
+        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} userLogOut={this.userLogOut} handleUserShowClick={this.handleUserShowClick}/>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="travel-container">
-        TravelContainer content
-        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} userLogOut={this.userLogOut} handleUserShowClick={this.handleUserShowClick}/>
+        <h1 id="project-name">Guardian Travel Portal</h1>
+        {this.renderNavBar()}
         {this.handleDisplayingContent()}
       </div>
     )

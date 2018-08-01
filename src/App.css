@@ -1,11 +1,16 @@
 * {
-  /* font-family: 'Hanalei Fill', cursive; */
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 200
 }
 
 body {
   margin-left, margin-right: 15%;
   margin-top: 2.5%;
 
+}
+
+#project-name {
+  font-size: 5rem;
 }
 
 .App {
