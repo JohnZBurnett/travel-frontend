@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 
 const Navbar = (props) => {
-  console.log("Navbar Props: ", props);
+  //console.log("Navbar Props: ", props);
 
   function displayUserActionsPanel() {
     if (props.userLoggedIn === false) {
