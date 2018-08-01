@@ -225,11 +225,16 @@ export default class TravelContainer extends Component {
     }
   }
 
+  userLogOut = () => {
+    console.log("userLogOut ran")
+    window.location.reload(true);
+  }
+
   render() {
     return (
       <div className="travel-container">
         TravelContainer content
-        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} handleUserShowClick={this.handleUserShowClick}/>
+        <Navbar onNavbarClick={this.onNavbarClick} userLoggedIn={this.state.userLoggedIn} userLogOut={this.userLogOut} handleUserShowClick={this.handleUserShowClick}/>
         {this.handleDisplayingContent()}
       </div>
     )
