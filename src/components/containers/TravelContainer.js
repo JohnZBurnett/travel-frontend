@@ -226,7 +226,6 @@ export default class TravelContainer extends Component {
   }
 
   userLogOut = () => {
-    console.log("userLogOut ran")
     window.location.reload(true);
   }
 
