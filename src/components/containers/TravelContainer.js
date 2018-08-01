@@ -27,6 +27,7 @@ export default class TravelContainer extends Component {
     }
   }
 
+
   callToDb = () => {
     fetch(`http://localhost:3000/api/v1/articles`).then( r => r.json()).then( data => this.setState({
       articles: data
@@ -45,7 +46,15 @@ export default class TravelContainer extends Component {
         })
       }).then( resp => resp.json() ).then( userJSON => {
         this.addUserIdToState(userJSON);
+        this.setUserSavedArticles(userJSON); 
         return this.setupUsersArray(); 
+      })
+    }
+
+    setUserSavedArticles = (userJSON) => {
+      console.log("setUserSavedArticles JSON: ", userJSON); 
+      this.setState({
+        userSavedArticles: userJSON.articles,
       })
     }
 
@@ -151,7 +160,7 @@ export default class TravelContainer extends Component {
     console.log("handle save click", event.target)
     let clonedSavedArticles = [...this.state.userSavedArticles];
     clonedSavedArticles.push(this.state.currentArticle);
-    this.patchUserWithSavedArticle(); 
+    this.putUserWithSavedArticle(); 
     this.setState({ userSavedArticles: clonedSavedArticles })
     
   }
@@ -164,11 +173,11 @@ export default class TravelContainer extends Component {
     console.log("Post-Splice Saved Articles: ", userSavedArticlesClone); 
   }
 
-  patchUserWithSavedArticle = () => {
+  putUserWithSavedArticle = () => {
     let userToPatch = this.state.usersArray.find( user => user.id === this.state.currentUserId); 
     userToPatch.articles.push(this.state.currentArticle); 
     let configObj = {
-      method: "PATCH",
+      method: "PUT",
       headers: {
         "Content-Type":"application/JSON"
       },
