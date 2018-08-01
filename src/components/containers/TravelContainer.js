@@ -240,7 +240,7 @@ export default class TravelContainer extends Component {
   render() {
     return (
       <div className="travel-container">
-        <h1 id="project-name">Guardian Travel Portal</h1>
+        <h1 id="project-name">Guardian Travel Planner</h1>
         {this.renderNavBar()}
         {this.handleDisplayingContent()}
       </div>

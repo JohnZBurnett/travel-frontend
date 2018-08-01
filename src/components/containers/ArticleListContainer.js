@@ -5,7 +5,7 @@ export default class ArticleListContainer extends Component {
 
   generateArticleCards = () => {
     return <div className="ui cards">{this.props.articles.map(individualCard => {
-      if (individualCard.title.toLowerCase().includes(this.props.currentQuery.toLowerCase())){
+      if (individualCard.title.toLowerCase().includes(this.props.currentQuery.toLowerCase()) || individualCard.body_text.toLowerCase().includes(this.props.currentQuery.toLowerCase())){
         return (
           <ArticleCard
             key={individualCard.id}
