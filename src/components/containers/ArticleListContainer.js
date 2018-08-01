@@ -17,7 +17,7 @@ export default class ArticleListContainer extends Component {
           />)
       }
     })}
-    </div>
+  </div>
   }
 
   render() {

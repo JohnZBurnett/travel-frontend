@@ -12,12 +12,26 @@ body {
   font-size: 5rem;
 }
 
+
 #search-input {
   width: 50%;
   font-size: 1.75rem;
   height: 2.5rem;
   margin: 2.5%;
 }
+
+#username, #password {
+  width: 50%;
+  font-size: 1.75rem;
+  height: 2.5rem;
+  margin: 2.5%;
+}
+
+#login-submit {
+  font-size: 1.5rem;
+  border-radius: 0.5%;
+}
+
 
 .navbar {
   margin-top: -2%;
@@ -35,6 +49,10 @@ body {
 .article-list-container {
   margin: 10px;
   display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 2;
+  justify-content: center;
 }
 
 
